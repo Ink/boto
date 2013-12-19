@@ -922,7 +922,7 @@ class Key(object):
         if 200 <= response.status <= 299:
             self.etag = response.getheader('etag')
 
-            if self.etag != '"%s"' % self.md5:
+            if self.md5 and self.etag != '"%s"' % self.md5:
                 raise provider.storage_data_error(
                     'ETag from S3 did not match computed MD5')
 
